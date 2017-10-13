@@ -14,36 +14,11 @@ import {
   Dimensions,
   TouchableOpacity
 } from "react-native";
-const { height, width } = Dimensions.get("window");
+
+import { Root } from "./Router";
 
 export default class App extends Component<{}> {
   render() {
-    return (
-      <TouchableOpacity style={styles.touchable}
-        activeOpacity={.8}
-      >
-        <View style={styles.container}>
-          <Image source={require("./assets/loffy.png")} />
-          <Text style={styles.text}>Loffy</Text>
-        </View>
-      </TouchableOpacity>
-    );
+    return <Root />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  text: {
-    fontStyle: "italic",
-    fontWeight: "bold",
-    fontSize: 45,
-    paddingTop: 20
-  },
-  touchable: {
-    flex: 1
-  }
-});

@@ -1,3 +1,1 @@
 # Loffy
-
-![]('./assets/loffy.png')
