@@ -7,13 +7,25 @@ export default class Header extends React.Component {
   }
 
   render() {
-    return <View style={styles.headcontainer} />;
+    return (
+      <View style={styles.headcontainer}>
+        <Text style={styles.headerText}>Loffy</Text>
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   headcontainer: {
     flex: 1 / 5,
-    backgroundColor: "#ff8c00"
+    backgroundColor: "#ff8c00",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  headerText: {
+    color: "white",
+    fontStyle: "italic",
+    fontWeight: "bold",
+    fontSize: 25
   }
 });
