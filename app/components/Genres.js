@@ -39,6 +39,13 @@ export default class Genres extends React.Component {
     console.log(connectionInfo.type);
   };
 
+  navigateToGenreMovies(item) {
+    this.props.navigation.navigate("genremovies", {
+      genreId: item.id,
+      genreName: item.name
+    });
+  }
+
   componentWillMount() {
     this.getGenres();
   }
@@ -60,17 +67,25 @@ export default class Genres extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header />
-
-        <FlatList
-          data={this.state.genres}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <TouchableOpacity>
-              <ListItem key={item.id} title={item.name} />
-            </TouchableOpacity>
-          )}
-        />
+        <Header title="Loffy" />
+        <View style={styles.genreslist}>
+          <FlatList
+            data={this.state.genres}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => this.navigateToGenreMovies(item)}
+              >
+                <ListItem
+                  key={item.id}
+                  title={item.name}
+                  chevronColor="#ff8c00"
+                />
+              </TouchableOpacity>
+            )}
+          />
+        </View>
       </View>
     );
   }
@@ -80,5 +95,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white"
+  },
+  genreslist: {
+    flex: 4 / 5
   }
 });

@@ -19,6 +19,10 @@ export default class StartScreen extends React.Component {
     this.props.navigation.navigate("home");
   }
 
+  // componentDidMount(){
+  //   setTimeout(this.navigateToHome(), 10000)
+  // }
+
   render() {
     return (
       <TouchableOpacity

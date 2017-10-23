@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <View style={styles.headcontainer}>
-        <Text style={styles.headerText}>Loffy</Text>
+        <Text style={styles.headerText}>{this.props.title}</Text>
       </View>
     );
   }
@@ -29,3 +30,7 @@ const styles = StyleSheet.create({
     fontSize: 25
   }
 });
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired
+};

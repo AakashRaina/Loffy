@@ -60,7 +60,8 @@ export default class Filter extends React.Component {
   render() {
     return (
       <View style={styles.headcontainer}>
-        <Header />
+        <Header title="Loffy" />
+
         <View style={styles.filterview}>
           <View style={styles.yearview}>
             <Text style={{ fontSize: 30, fontWeight: "bold" }}>Year</Text>
@@ -119,8 +120,7 @@ const styles = StyleSheet.create({
     flex: 4 / 5
   },
   yearview: {
-    flex: 1 / 4,
-   
+    flex: 1 / 4
   },
   genreview: {
     flex: 1 / 4
@@ -131,8 +131,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1 / 4,
     justifyContent: "center",
-    alignItems: "center",
-    
+    alignItems: "center"
   },
   input: {
     marginTop: 10,
