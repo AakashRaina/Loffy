@@ -20,10 +20,12 @@ export default class Filter extends React.Component {
     this.state = {
       selectedYear: " ",
       selectedGenre: " ",
-      selectedRating: 0
+      selectedRating: 0,
+      movieList: []
     };
   }
 
+  // picker items //
   yearItems = [];
   genreItems = [];
 
@@ -40,10 +42,32 @@ export default class Filter extends React.Component {
     for (var i = 0; i < genres.length; i++) {
       s = genres[i];
 
-      this.genreItems.push(
-        <Picker.Item key={i} value={s.name} label={s.name} />
-      );
+      this.genreItems.push(<Picker.Item key={i} value={s.id} label={s.name} />);
     }
+  }
+
+  async getfilterMovies() {
+    urlString =
+      "https://api.themoviedb.org/3/discover/movie?api_key=8b51b25335ed94c74571c812120a6c73" +
+      "&" +
+      "&primary_release_year=" +
+      this.state.selectedYear +
+      "&" +
+      "vote_count.gte=" +
+      this.state.selectedRating +
+      "&" +
+      "with_genres=" +
+      this.state.selectedGenre;
+
+    response = await fetch(urlString);
+
+    responseJson = await response.json();
+
+    this.setState({
+      movieList: responseJson.results
+    });
+
+    console.log(this.state.movieList);
   }
 
   componentWillMount() {
@@ -67,6 +91,7 @@ export default class Filter extends React.Component {
             <Text style={{ fontSize: 30, fontWeight: "bold" }}>Year</Text>
             <Picker
               mode="dialog"
+              style={styles.pickerstyle}
               selectedValue={this.state.selectedYear}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({ selectedYear: itemValue })}
@@ -79,6 +104,7 @@ export default class Filter extends React.Component {
             <Text style={{ fontSize: 30, fontWeight: "bold" }}>Genre</Text>
             <Picker
               mode="dialog"
+              style={styles.pickerstyle}
               selectedValue={this.state.selectedGenre}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({ selectedGenre: itemValue })}
@@ -91,7 +117,7 @@ export default class Filter extends React.Component {
             <Text style={{ fontSize: 30, fontWeight: "bold" }}>Rating</Text>
             <TextInput
               style={styles.input}
-              placeholder={"Only Numeric Values .."}
+              placeholder={"Only Numeric"}
               keyboardType="numeric"
               onChangeText={text => this.setState({ selectedRating: text })}
             />
@@ -102,7 +128,7 @@ export default class Filter extends React.Component {
               raised
               name="search"
               type="font-awesome"
-              onPress={() => console.log("hello")}
+              onPress={() => this.getfilterMovies()}
             />
           </View>
         </View>
@@ -117,25 +143,37 @@ const styles = StyleSheet.create({
     backgroundColor: "white"
   },
   filterview: {
-    flex: 4 / 5
+    flex: 4 / 5,
+    justifyContent: "space-around"
   },
   yearview: {
-    flex: 1 / 4
+    flex: 1 / 3,
+    flexDirection: "row",
+    justifyContent: "space-around"
   },
   genreview: {
-    flex: 1 / 4
+    flex: 1 / 3,
+    flexDirection: "row",
+    justifyContent: "space-around"
   },
   votesview: {
-    flex: 1 / 4
+    flex: 1 / 3,
+    flexDirection: "row",
+    justifyContent: "space-around"
   },
   button: {
-    flex: 1 / 4,
+    flex: 1 / 10,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    paddingBottom: 5
   },
   input: {
     marginTop: 10,
     paddingTop: 1,
-    height: 25
+    height: 25,
+    width: 130
+  },
+  pickerstyle: {
+    width: 135
   }
 });
