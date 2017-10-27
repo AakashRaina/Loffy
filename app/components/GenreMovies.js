@@ -43,6 +43,12 @@ export default class GenreMovies extends React.Component {
     this.getGenreMovies();
   }
 
+  navigateToMovieInfo(item) {
+    this.props.navigation.navigate("movieinfo", {
+      movie: item
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -52,7 +58,10 @@ export default class GenreMovies extends React.Component {
             data={this.state.genreMovies}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
-              <TouchableOpacity activeOpacity={0.8}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => this.navigateToMovieInfo(item)}
+              >
                 <ListItem
                   key={item.id}
                   title={item.title}

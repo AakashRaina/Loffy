@@ -6,6 +6,7 @@ import Genres from "./app/components/Genres";
 import Filter from "./app/components/Filter";
 import Bookmarked from "./app/components/Bookmarked";
 import GenreMovies from "./app/components/GenreMovies";
+import MovieInfo from './app/components/MovieInfo';
 
 import { Icon } from "react-native-elements";
 
@@ -18,6 +19,12 @@ const genretab = StackNavigator({
   },
   genremovies: {
     screen: GenreMovies,
+    navigationOptions: {
+      header: null
+    }
+  },
+  movieinfo: {
+    screen: MovieInfo,
     navigationOptions: {
       header: null
     }

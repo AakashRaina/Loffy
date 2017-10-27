@@ -46,6 +46,7 @@ export default class Filter extends React.Component {
     }
   }
 
+  // get movie list based on filters //
   async getfilterMovies() {
     urlString =
       "https://api.themoviedb.org/3/discover/movie?api_key=8b51b25335ed94c74571c812120a6c73" +
