@@ -1,8 +1,8 @@
 import React from "react";
 import { TabNavigator, StackNavigator } from "react-navigation";
 
-import StartScreen from "./app/components/StartScreen";
-import Genres from "./app/components/Genres";
+import StartScreen from "./app/screens/StartScreen";
+import GenresScreen from "./app/screens/GenresScreen";
 import Filter from "./app/components/Filter";
 import Bookmarked from "./app/components/Bookmarked";
 import GenreMovies from "./app/components/GenreMovies";
@@ -12,7 +12,7 @@ import { Icon } from "react-native-elements";
 
 const genretab = StackNavigator({
   genres: {
-    screen: Genres,
+    screen: GenresScreen,
     navigationOptions: {
       header: null
     }
