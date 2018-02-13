@@ -5,7 +5,7 @@ import StartScreen from "./app/screens/StartScreen";
 import GenresScreen from "./app/screens/GenresScreen";
 import Filter from "./app/components/Filter";
 import Bookmarked from "./app/components/Bookmarked";
-import GenreMovies from "./app/components/GenreMovies";
+import GenreMovies from "./app/screens/GenreMovies";
 import MovieInfo from './app/components/MovieInfo';
 
 import { Icon } from "react-native-elements";

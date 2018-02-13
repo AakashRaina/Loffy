@@ -26,7 +26,7 @@ export default class MovieInfo extends React.Component {
     const { params } = this.props.navigation.state;
 
     this.state = {
-      movie: params.movie
+      movie: params.item
     };
   }
 

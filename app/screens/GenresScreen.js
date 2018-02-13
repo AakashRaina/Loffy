@@ -17,7 +17,7 @@ export default class GenresScreen extends React.Component {
       genres: []
     };
 
-    this.navigateToGenreMovies = this.navigateToGenreMovies.bind(this);
+    // this.navigateToGenreMovies = this.navigateToGenreMovies.bind(this);
   }
 
   async getGenres() {
@@ -28,13 +28,6 @@ export default class GenresScreen extends React.Component {
     responseJson = await response.json();
     this.setState({
       genres: responseJson.genres
-    });
-  }
-
-  navigateToGenreMovies(item) {
-    this.props.navigation.navigate("genremovies", {
-      genreId: item.id,
-      genreName: item.name
     });
   }
 
@@ -50,7 +43,7 @@ export default class GenresScreen extends React.Component {
           <Header title="Loffy" />
         </View>
         <View style={styles.genreslist}>
-          <DisplayList itemList={this.state.genres} onItemPress={this.navigateToGenreMovies} />
+          <DisplayList itemList={this.state.genres} navigateTo="genremovies" titleKey="name" />
         </View>
       </View>
     );
