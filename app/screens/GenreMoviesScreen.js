@@ -36,8 +36,6 @@ export default class GenreMoviesScreen extends React.Component {
 
     this.setState({
       genreMovies: responseJson.results
-    }, function () {
-      console.log(this.state.genreMovies);
     });
   }
 

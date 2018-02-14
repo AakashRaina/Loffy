@@ -8,6 +8,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import Header from "../components/Header";
+import CardView from "../components/CardView.js";
 import {
   Card,
   CardItem,
@@ -30,48 +31,15 @@ export default class MovieInfoScreen extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log(this.state.movie);
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        <Header title={this.state.movie.title} />
+        <View style={styles.header}>
+          <Header title={this.state.movie.title} />
+        </View>
+
         <View style={styles.cardcontainer}>
-          <Card style={{ flex: 0 }}>
-            <CardItem>
-              <Left>
-                <Icon name="movie" />
-                <Body>
-                  <Text>{this.state.movie.title}</Text>
-                  <Text note>{this.state.movie.release_date}</Text>
-                </Body>
-              </Left>
-            </CardItem>
-            <CardItem>
-              <Body>
-                <TouchableOpacity activeOpacity={0.7}>
-                  <Text>Read Overview</Text>
-                </TouchableOpacity>
-              </Body>
-            </CardItem>
-            <CardItem>
-              <Left>
-                <Rating
-                  showRating
-                  type="star"
-                  fractions={1}
-                  ratingCount={10}
-                  startingValue={this.state.movie.vote_average}
-                  imageSize={20}
-                />
-              </Left>
-              <Right>
-                <Icon name="bookmark" />
-              </Right>
-            </CardItem>
-          </Card>
+          <CardView {...this.state} />
         </View>
       </View>
     );
@@ -81,6 +49,9 @@ export default class MovieInfoScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  header: {
+    flex: 1 / 5
   },
   cardcontainer: {
     flex: 4 / 5
