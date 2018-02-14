@@ -11,7 +11,7 @@ import Header from "../components/Header";
 import DisplayList from "../components/DisplayList"
 import { List, ListItem } from "react-native-elements";
 
-export default class GenreMovies extends React.Component {
+export default class GenreMoviesScreen extends React.Component {
   constructor(props) {
     super(props);
 

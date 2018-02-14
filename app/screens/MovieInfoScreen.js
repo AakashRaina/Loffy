@@ -7,7 +7,7 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
-import Header from "./Header";
+import Header from "../components/Header";
 import {
   Card,
   CardItem,
@@ -19,7 +19,7 @@ import {
 } from "native-base";
 import { Icon, Rating } from "react-native-elements";
 
-export default class MovieInfo extends React.Component {
+export default class MovieInfoScreen extends React.Component {
   constructor(props) {
     super(props);
 
