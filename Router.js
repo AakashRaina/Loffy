@@ -7,6 +7,7 @@ import Filter from "./app/components/Filter";
 import Bookmarked from "./app/components/Bookmarked";
 import GenreMoviesScreen from "./app/screens/GenreMoviesScreen";
 import MovieInfoScreen from './app/screens/MovieInfoScreen';
+import FilteredMoviesScreen from "./app/screens/FilteredMoviesScreen"
 
 import { Icon } from "react-native-elements";
 
@@ -31,6 +32,21 @@ const genretab = StackNavigator({
   }
 });
 
+const filtertab = StackNavigator({
+  filters: {
+    screen: Filter,
+    navigationOptions: {
+      header: null
+    }
+  },
+  filteredmovies: {
+    screen: FilteredMoviesScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+});
+
 const hometab = TabNavigator(
   {
     genres: {
@@ -40,7 +56,7 @@ const hometab = TabNavigator(
       }
     },
     filter: {
-      screen: Filter,
+      screen: filtertab,
       navigationOptions: {
         header: null
       }

@@ -49,7 +49,7 @@ export default class Filter extends React.Component {
   // get movie list based on filters //
   async getfilterMovies() {
     urlString =
-      "https://api.themoviedb.org/3/discover/movie?api_key=8b51b25335ed94c74571c812120a6c73" +
+      "https://api.themoviedb.org/3/discover/movie?api_key=8b51b25335ed94c74571c812120a6c73&language=en-US" +
       "&" +
       "&primary_release_year=" +
       this.state.selectedYear +
@@ -66,9 +66,10 @@ export default class Filter extends React.Component {
 
     this.setState({
       movieList: responseJson.results
+    }, function () {
+      this.props.navigation.navigate("filteredmovies", { movieList: this.state.movieList })
     });
 
-    console.log(this.state.movieList);
   }
 
   componentWillMount() {
@@ -84,53 +85,56 @@ export default class Filter extends React.Component {
 
   render() {
     return (
-      <View style={styles.headcontainer}>
-        <Header title="Loffy" />
-
+      <View style={styles.container}>
+        <View style={styles.headcontainer}>
+          <Header title="Apply Filter" />
+        </View>
         <View style={styles.filterview}>
-          <View style={styles.yearview}>
-            <Text style={{ fontSize: 30, fontWeight: "bold" }}>Year</Text>
-            <Picker
-              mode="dialog"
-              style={styles.pickerstyle}
-              selectedValue={this.state.selectedYear}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({ selectedYear: itemValue })}
-            >
-              {this.yearItems}
-            </Picker>
-          </View>
+          <View style={styles.filterview}>
+            <View style={styles.yearview}>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Year</Text>
+              <Picker
+                mode="dialog"
+                style={styles.pickerstyle}
+                selectedValue={this.state.selectedYear}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ selectedYear: itemValue })}
+              >
+                {this.yearItems}
+              </Picker>
+            </View>
 
-          <View style={styles.genreview}>
-            <Text style={{ fontSize: 30, fontWeight: "bold" }}>Genre</Text>
-            <Picker
-              mode="dialog"
-              style={styles.pickerstyle}
-              selectedValue={this.state.selectedGenre}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({ selectedGenre: itemValue })}
-            >
-              {this.genreItems}
-            </Picker>
-          </View>
+            <View style={styles.genreview}>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Genre</Text>
+              <Picker
+                mode="dialog"
+                style={styles.pickerstyle}
+                selectedValue={this.state.selectedGenre}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ selectedGenre: itemValue })}
+              >
+                {this.genreItems}
+              </Picker>
+            </View>
 
-          <View style={styles.votesview}>
-            <Text style={{ fontSize: 30, fontWeight: "bold" }}>Rating</Text>
-            <TextInput
-              style={styles.input}
-              placeholder={"Only Numeric"}
-              keyboardType="numeric"
-              onChangeText={text => this.setState({ selectedRating: text })}
-            />
-          </View>
+            <View style={styles.votesview}>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Rating</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Only Numeric"
+                keyboardType="numeric"
+                onChangeText={text => this.setState({ selectedRating: text })}
+              />
+            </View>
 
-          <View style={styles.button}>
-            <Icon
-              raised
-              name="search"
-              type="font-awesome"
-              onPress={() => this.getfilterMovies()}
-            />
+            <View style={styles.button}>
+              <Icon
+                raised
+                name="search"
+                type="font-awesome"
+                onPress={() => this.getfilterMovies()}
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -139,9 +143,11 @@ export default class Filter extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   headcontainer: {
-    flex: 1,
-    backgroundColor: "white"
+    flex: 1 / 4,
   },
   filterview: {
     flex: 4 / 5,
@@ -171,7 +177,7 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 10,
     paddingTop: 1,
-    height: 25,
+    height: 30,
     width: 130
   },
   pickerstyle: {
