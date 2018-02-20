@@ -9,7 +9,7 @@ import {
 import Header from "../components/Header";
 import DisplayList from "../components/DisplayList"
 
-
+import PageContentContainer from "../components/PageContentContainer"
 export default class GenresScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -49,13 +49,10 @@ export default class GenresScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="white" barStyle="dark-content" />
-        <View style={styles.header}>
+        <PageContentContainer>
           <Header title="Loffy" />
-        </View>
-        <View style={styles.genreslist}>
           <DisplayList itemList={this.state.genres} navigateTo="genremovies" titleKey="name" />
-        </View>
+        </PageContentContainer>
       </View>
     );
   }
@@ -64,12 +61,5 @@ export default class GenresScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
   },
-  header: {
-    flex: 1 / 5
-  },
-  genreslist: {
-    flex: 4 / 5
-  }
 });
