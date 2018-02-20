@@ -14,23 +14,10 @@ export default class GenresScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    isConnected: "",
-
-      this.state = {
-        connectionType: "",
-        genres: []
-      };
-  }
-
-  async getGenres() {
-    response = await fetch(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=8b51b25335ed94c74571c812120a6c73"
-    );
-
-    responseJson = await response.json();
-    this.setState({
-      genres: responseJson.genres
-    });
+    this.state = {
+      connectionType: "",
+      genres: []
+    };
   }
 
   handleFirstConnectivityChange = (connectionInfo) => {
@@ -54,7 +41,9 @@ export default class GenresScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.getGenres();
+    fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=8b51b25335ed94c74571c812120a6c73")
+      .then(response => response.json())
+      .then(data => this.setState({ genres: data.genres }))
   }
 
   render() {
