@@ -25,7 +25,7 @@ class FilteredMoviesScreen extends React.Component {
                     <Header title="Filtered Movies" />
                 </View>
                 <View style={styles.movielist}>
-                    <DisplayList itemList={this.state.movieList} titleKey="original_title" />
+                    <DisplayList itemList={this.state.movieList} titleKey="original_title" navigateTo="filteredmovieinfo" />
                 </View>
             </View>
         );

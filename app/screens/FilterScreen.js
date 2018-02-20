@@ -13,7 +13,7 @@ import { Icon } from "react-native-elements";
 const years = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017];
 const genres = [];
 
-export default class Filter extends React.Component {
+class FilterScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -184,3 +184,5 @@ const styles = StyleSheet.create({
     width: 135
   }
 });
+
+export default FilterScreen;

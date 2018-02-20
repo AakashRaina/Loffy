@@ -1,15 +1,15 @@
 import React from "react";
 import { TabNavigator, StackNavigator } from "react-navigation";
 
+import Bookmarked from "./app/components/Bookmarked";
+
 import StartScreen from "./app/screens/StartScreen";
 import GenresScreen from "./app/screens/GenresScreen";
-import Filter from "./app/components/Filter";
-import Bookmarked from "./app/components/Bookmarked";
+import FilterScreen from "./app/screens/FilterScreen";
 import GenreMoviesScreen from "./app/screens/GenreMoviesScreen";
 import MovieInfoScreen from './app/screens/MovieInfoScreen';
 import FilteredMoviesScreen from "./app/screens/FilteredMoviesScreen"
 
-import { Icon } from "react-native-elements";
 
 const genretab = StackNavigator({
   genres: {
@@ -34,13 +34,19 @@ const genretab = StackNavigator({
 
 const filtertab = StackNavigator({
   filters: {
-    screen: Filter,
+    screen: FilterScreen,
     navigationOptions: {
       header: null
     }
   },
   filteredmovies: {
     screen: FilteredMoviesScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  filteredmovieinfo: {
+    screen: MovieInfoScreen,
     navigationOptions: {
       header: null
     }
