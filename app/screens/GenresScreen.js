@@ -3,21 +3,23 @@ import {
   Text,
   View,
   StyleSheet,
-  StatusBar
+  StatusBar,
+  NetInfo
 } from "react-native";
 import Header from "../components/Header";
 import DisplayList from "../components/DisplayList"
+
 
 export default class GenresScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isConnected: "",
-      genres: []
-    };
+    isConnected: "",
 
-    // this.navigateToGenreMovies = this.navigateToGenreMovies.bind(this);
+      this.state = {
+        connectionType: "",
+        genres: []
+      };
   }
 
   async getGenres() {
@@ -29,6 +31,26 @@ export default class GenresScreen extends React.Component {
     this.setState({
       genres: responseJson.genres
     });
+  }
+
+  handleFirstConnectivityChange = (connectionInfo) => {
+    this.setState({ connectionType: connectionInfo.type }, function () {
+      console.log(this.state.connectionType)
+    })
+  }
+
+  componentWillMount() {
+    NetInfo.addEventListener(
+      'connectionChange',
+      this.handleFirstConnectivityChange
+    );
+  }
+
+  componentWillUnmount() {
+    NetInfo.removeEventListener(
+      'connectionChange',
+      this.handleFirstConnectivityChange
+    );
   }
 
   componentDidMount() {

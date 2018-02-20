@@ -7,7 +7,7 @@ import {
   PickerItem,
   TextInput
 } from "react-native";
-import Header from "./Header";
+import Header from "../components/Header";
 import { Icon } from "react-native-elements";
 
 const years = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017];
