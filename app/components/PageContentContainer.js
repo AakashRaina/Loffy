@@ -54,7 +54,7 @@ export default class PageContentContainer extends React.Component {
                     {this.props.children[0]}
                 </View>
                 <View style={styles.genreslist}>
-                    {this.props.children[1]}
+                    {React.cloneElement(this.props.children[1], { itemList:this.state.genres, navigateTo:this.props.navigateTo, titleKey:this.props.titleKey })}
                 </View>
             </View>
         );
