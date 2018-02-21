@@ -15,7 +15,12 @@ class GenresScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <PageContentContainer navigateTo="genremovies" titleKey="name">
+        <PageContentContainer
+          url="https://api.themoviedb.org/3/genre/movie/list?api_key=8b51b25335ed94c74571c812120a6c73"
+          responseDataKey="genres"
+          navigateTo="genremovies"
+          titleKey="name"
+        >
           <Header title="Loffy" />
           <DisplayList />
         </PageContentContainer>

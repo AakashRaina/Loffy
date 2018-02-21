@@ -16,7 +16,7 @@ export default class PageContentContainer extends React.Component {
 
         this.state = {
             connectionType: "",
-            genres: []
+            responseData: []
         };
     }
 
@@ -41,9 +41,9 @@ export default class PageContentContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=8b51b25335ed94c74571c812120a6c73")
+        fetch(this.props.url)
             .then(response => response.json())
-            .then(data => this.setState({ genres: data.genres }))
+            .then(data => this.setState({ responseData: data[this.props.responseDataKey] }))
     }
 
     render() {
@@ -54,7 +54,7 @@ export default class PageContentContainer extends React.Component {
                     {this.props.children[0]}
                 </View>
                 <View style={styles.genreslist}>
-                    {React.cloneElement(this.props.children[1], { itemList:this.state.genres, navigateTo:this.props.navigateTo, titleKey:this.props.titleKey })}
+                    {React.cloneElement(this.props.children[1], { itemList: this.state.responseData, navigateTo: this.props.navigateTo, titleKey: this.props.titleKey })}
                 </View>
             </View>
         );
