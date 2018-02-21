@@ -1,15 +1,12 @@
 import React from "react";
 import {
-  Text,
   View,
   StyleSheet,
-  NetInfo,
-  FlatList,
-  TouchableOpacity
 } from "react-native";
 import Header from "../components/Header";
 import DisplayList from "../components/DisplayList"
 import { List, ListItem } from "react-native-elements";
+import PageContentContainer from "../components/PageContentContainer"
 
 export default class GenreMoviesScreen extends React.Component {
   constructor(props) {
@@ -19,46 +16,33 @@ export default class GenreMoviesScreen extends React.Component {
 
     this.state = {
       genre: params.item,
-      genreMovies: []
+      url: ""
     };
   }
 
-  // Get movies specific to a genre //
-  async getGenreMovies() {
-    let url =
+  componentDidMount() {
+
+    const fullUrl =
       "https://api.themoviedb.org/3/genre/" +
       this.state.genre.id +
       "/movies?api_key=8b51b25335ed94c74571c812120a6c73";
 
-    response = await fetch(url);
-
-    responseJson = await response.json();
-
-    this.setState({
-      genreMovies: responseJson.results
-    });
-  }
-
-  componentDidMount() {
-    this.getGenreMovies();
-  }
-
-  navigateToMovieInfo(item) {
-    this.props.navigation.navigate("movieinfo", {
-      movie: item
-    });
+    this.setState({ url: fullUrl });
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
+      this.state.url.length > 0 && (<View style={styles.container}>
+        <PageContentContainer
+          url={this.state.url}
+          responseDataKey="results"
+          navigateTo="movieinfo"
+          titleKey="original_title"
+        >
           <Header title={this.state.genre.name} />
-        </View>
-        <View style={styles.movielist}>
-          <DisplayList itemList={this.state.genreMovies} titleKey="original_title" navigateTo="movieinfo" />
-        </View>
-      </View>
+          <DisplayList />
+        </PageContentContainer>
+      </View>)
     );
   }
 }
@@ -66,12 +50,5 @@ export default class GenreMoviesScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
   },
-  header: {
-    flex: 1 / 5
-  },
-  movielist: {
-    flex: 4 / 5
-  }
 });
