@@ -34,10 +34,11 @@ class FilteredMoviesScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: 'white'
     },
     header: {
-        flex: 1 / 4,
+        flex: 1 / 5,
     },
     movielist: {
         flex: 4 / 5
