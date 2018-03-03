@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Header from "../components/Header";
 import FilterCardView from "../components/FilterCardView";
+import PageContentContainer from "../components/PageContentContainer"
 import { Icon } from "react-native-elements";
 
 
@@ -18,12 +19,14 @@ class FilterScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
+        <PageContentContainer
+          url="https://api.themoviedb.org/3/genre/movie/list?api_key=8b51b25335ed94c74571c812120a6c73"
+          responseDataKey="genres"
+          navigateTo="filteredmovies"
+        >
           <Header title="Filter" />
-        </View>
-        <View style={styles.filter}>
           <FilterCardView />
-        </View>
+        </PageContentContainer>
       </View>
     )
   }

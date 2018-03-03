@@ -4,7 +4,8 @@ import {
     View,
     StyleSheet,
     StatusBar,
-    NetInfo
+    NetInfo,
+    ActivityIndicator
 } from "react-native";
 import Header from "../components/Header";
 import DisplayList from "../components/DisplayList"
@@ -54,10 +55,12 @@ export default class PageContentContainer extends React.Component {
                     {this.props.children[0]}
                 </View>
                 <View style={styles.genreslist}>
-                    {React.cloneElement(this.props.children[1], { itemList: this.state.responseData, navigateTo: this.props.navigateTo, titleKey: this.props.titleKey })}
+                    {this.state.responseData.length > 0 ? React.cloneElement(this.props.children[1], { itemList: this.state.responseData, navigateTo: this.props.navigateTo, titleKey: this.props.titleKey })
+                        :
+                        <ActivityIndicator size="large" color="#0000ff" />}
                 </View>
             </View>
-        );
+        )
     }
 }
 

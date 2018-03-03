@@ -15,13 +15,13 @@ class FilterCardView extends React.Component {
         super(props);
 
         this.state = {
-            genres: [],
+            genres: this.props.itemList,
             yearPicker: [],
             genrePicker: [],
             selectedYear: "",
             selectedGenre: "",
             selectedRating: 0,
-            movieList: []
+            movieList: [],
         };
     }
 
@@ -32,28 +32,24 @@ class FilterCardView extends React.Component {
     genreItems = [];
 
     componentDidMount() {
-        fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=8b51b25335ed94c74571c812120a6c73")
-            .then(response => response.json())
-            .then(data => this.setState({ genres: data.genres }, function () {
 
-                // To get the genre names for genre picker items //
-                for (var i = 0; i < this.state.genres.length; i++) {
-                    s = this.state.genres[i];
-                    this.genreItems.push(<Picker.Item key={i} value={s.id} label={s.name} />);
-                }
+        // To get the genre names for genre picker items //
+        for (var i = 0; i < this.state.genres.length; i++) {
+            s = this.state.genres[i];
+            this.genreItems.push(<Picker.Item key={i} value={s.id} label={s.name} />);
+        }
 
-                // To get the years for years picker item //
-                for (var i = 0; i < this.years.length; i++) {
-                    s = this.years[i];
-                    sLabel = s.toString();
-                    this.yearItems.push(<Picker.Item key={i} value={s} label={sLabel} />);
-                }
+        // To get the years for years picker item //
+        for (var i = 0; i < this.years.length; i++) {
+            s = this.years[i];
+            sLabel = s.toString();
+            this.yearItems.push(<Picker.Item key={i} value={s} label={sLabel} />);
+        }
 
-                this.setState({
-                    yearPicker: this.yearItems,
-                    genrePicker: this.genreItems
-                })
-            }))
+        this.setState({
+            yearPicker: this.yearItems,
+            genrePicker: this.genreItems
+        })
     }
 
     getfilterMovies() {
@@ -75,7 +71,7 @@ class FilterCardView extends React.Component {
             .then(data => this.setState({
                 movieList: data.results
             }, function () {
-                this.props.navigation.navigate("filteredmovies", { movieList: this.state.movieList })
+                this.props.navigation.navigate(this.props.navigateTo, { movieList: this.state.movieList })
             }))
     }
 
