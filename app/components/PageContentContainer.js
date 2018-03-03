@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Header from "../components/Header";
 import DisplayList from "../components/DisplayList"
+import Loader from "../components/Loader"
 
 
 export default class PageContentContainer extends React.Component {
@@ -57,7 +58,8 @@ export default class PageContentContainer extends React.Component {
                 <View style={styles.genreslist}>
                     {this.state.responseData.length > 0 ? React.cloneElement(this.props.children[1], { itemList: this.state.responseData, navigateTo: this.props.navigateTo, titleKey: this.props.titleKey })
                         :
-                        <ActivityIndicator size="large" color="#0000ff" />}
+                        <Loader />
+                    }
                 </View>
             </View>
         )
