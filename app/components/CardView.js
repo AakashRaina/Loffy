@@ -48,7 +48,7 @@ const CardView = props => {
                         />
                     </Left>
                     <Right>
-                        <Icon name="bookmark" />
+                        <Icon name="bookmark" onPress={() => props.bookmarkClick(props.movie)} />
                     </Right>
                 </CardItem>
             </Card>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     ratingtext: {
-        fontSize: 20,
+        fontSize: 15,
         padding: 5
     }
 })

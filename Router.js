@@ -1,14 +1,15 @@
 
 import { TabNavigator, StackNavigator } from "react-navigation";
 
-import Bookmarked from "./app/components/Bookmarked";
+
 
 import StartScreen from "./app/screens/StartScreen";
 import GenresScreen from "./app/screens/GenresScreen";
 import FilterScreen from "./app/screens/FilterScreen";
 import GenreMoviesScreen from "./app/screens/GenreMoviesScreen";
 import MovieInfoScreen from './app/screens/MovieInfoScreen';
-import FilteredMoviesScreen from "./app/screens/FilteredMoviesScreen"
+import FilteredMoviesScreen from "./app/screens/FilteredMoviesScreen";
+import BookmarkedScreen from "./app/screens/BookmarkedScreen";
 
 
 const genretab = StackNavigator({
@@ -68,7 +69,7 @@ const hometab = TabNavigator(
       }
     },
     bookmarked: {
-      screen: Bookmarked,
+      screen: BookmarkedScreen,
       navigationOptions: {
         header: null
       }

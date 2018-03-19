@@ -5,7 +5,8 @@ import {
   StyleSheet,
   NetInfo,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from "react-native";
 import Header from "../components/Header";
 import CardView from "../components/CardView.js";
@@ -29,6 +30,21 @@ export default class MovieInfoScreen extends React.Component {
     this.state = {
       movie: params.item
     };
+
+    this.bookmarked = this.bookmarked.bind(this);
+  }
+
+  bookmarked(movie) {
+    // console.log(movie);
+    this.storeMovie(movie);
+  }
+
+  async storeMovie(movie) {
+    try {
+      await AsyncStorage.setItem(movie.id.toString(), JSON.stringify(movie), function () { console.log("Stored") });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -39,7 +55,7 @@ export default class MovieInfoScreen extends React.Component {
         </View>
 
         <View style={styles.cardcontainer}>
-          <CardView {...this.state} />
+          <CardView {...this.state} bookmarkClick={this.bookmarked} />
         </View>
       </View>
     );
