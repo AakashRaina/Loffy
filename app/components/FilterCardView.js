@@ -25,13 +25,23 @@ class FilterCardView extends React.Component {
         };
     }
 
-    years = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017];
+    years = [];
 
     // picker items //
     yearItems = [];
     genreItems = [];
 
     componentDidMount() {
+
+        let currentYear = (new Date()).getFullYear();
+        let startYear = currentYear - 10;
+
+        let j = 0;
+        while (j <= 10) {
+            this.years[j] = startYear;
+            startYear++;
+            j++;
+        }
 
         // To get the genre names for genre picker items //
         for (var i = 0; i < this.state.genres.length; i++) {
