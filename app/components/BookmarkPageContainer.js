@@ -18,6 +18,10 @@ import ErrorComponent from "../components/ErrorComponent";
 class BookmarkPageContainer extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            bookmarkedMovies: []
+        }
     }
 
     componentDidMount() {
@@ -40,7 +44,17 @@ class BookmarkPageContainer extends React.Component {
         keys.map((key) => {
 
             AsyncStorage.getItem(key)
-                .then(item => console.log(JSON.parse(item)))
+                .then(item => movies.push(JSON.parse(item)))
+                .then(() => {
+                    // when all movies have been pushed, only then call setstate //
+                    if (movies.length == keys.length) {
+                        this.setState({
+                            bookmarkedMovies: movies
+                        }, function () {
+                            console.log(this.state.bookmarkedMovies.length)
+                        })
+                    }
+                })
         })
     }
 
@@ -51,7 +65,16 @@ class BookmarkPageContainer extends React.Component {
             <View style={styles.container}>
                 <StatusBar backgroundColor="white" barStyle="dark-content" />
                 <View style={styles.header}>
-                    {this.props.children}
+                    <Header title="Bookmarks" />
+                </View>
+                <View style={styles.genreslist}>
+                    {this.state.bookmarkedMovies.length > 0 ?
+                        <DisplayList itemList={this.state.bookmarkedMovies}
+                            titleKey="title"
+                        />
+                        :
+                        <Loader />
+                    }
                 </View>
 
             </View>
