@@ -54,6 +54,21 @@ const filtertab = StackNavigator({
   },
 });
 
+const bookmarktab = StackNavigator({
+  bookmarked: {
+    screen: BookmarkedScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  bookmarkedMovieInfo: {
+    screen: MovieInfoScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+});
+
 const hometab = TabNavigator(
   {
     genres: {
@@ -69,7 +84,7 @@ const hometab = TabNavigator(
       }
     },
     bookmarked: {
-      screen: BookmarkedScreen,
+      screen: bookmarktab,
       navigationOptions: {
         header: null
       }

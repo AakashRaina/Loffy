@@ -71,6 +71,7 @@ class BookmarkPageContainer extends React.Component {
                     {this.state.bookmarkedMovies.length > 0 ?
                         <DisplayList itemList={this.state.bookmarkedMovies}
                             titleKey="title"
+                            navigateTo="bookmarkedMovieInfo"
                         />
                         :
                         <Loader />
