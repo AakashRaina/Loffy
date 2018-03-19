@@ -6,7 +6,8 @@ import {
   NetInfo,
   FlatList,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  ToastAndroid
 } from "react-native";
 import Header from "../components/Header";
 import CardView from "../components/CardView.js";
@@ -20,6 +21,7 @@ import {
   Body
 } from "native-base";
 import { Icon, Rating } from "react-native-elements";
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 export default class MovieInfoScreen extends React.Component {
   constructor(props) {
@@ -53,14 +55,18 @@ export default class MovieInfoScreen extends React.Component {
     // if not found, bookmark it //
     if (keysArray.indexOf(movie.id.toString()) === -1) {
       try {
-        await AsyncStorage.setItem(movie.id.toString(), JSON.stringify(movie), function () { console.log("Stored") });
+        await AsyncStorage.setItem(movie.id.toString(), JSON.stringify(movie), function () {
+          ToastAndroid.show('Bookmarked', ToastAndroid.SHORT);
+        });
       } catch (error) {
         console.log(error);
       }
     }
     else {
       await AsyncStorage.removeItem(movie.id.toString())
-        .then(() => console.log("Removed"))
+        .then(() => {
+          ToastAndroid.show('Removed Bookmark', ToastAndroid.SHORT);
+        })
     }
 
 
