@@ -35,16 +35,35 @@ export default class MovieInfoScreen extends React.Component {
   }
 
   bookmarked(movie) {
-    // console.log(movie);
     this.storeMovie(movie);
   }
 
   async storeMovie(movie) {
+
+    let keysArray = [];
     try {
-      await AsyncStorage.setItem(movie.id.toString(), JSON.stringify(movie), function () { console.log("Stored") });
+      await AsyncStorage.getAllKeys()
+        .then((keys) => keysArray = keys)
+        .then(() => console.log(keysArray))
+
     } catch (error) {
       console.log(error);
     }
+
+    // if not found, bookmark it //
+    if (keysArray.indexOf(movie.id.toString()) === -1) {
+      try {
+        await AsyncStorage.setItem(movie.id.toString(), JSON.stringify(movie), function () { console.log("Stored") });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    else {
+      await AsyncStorage.removeItem(movie.id.toString())
+        .then(() => console.log("Removed"))
+    }
+
+
   }
 
   render() {
