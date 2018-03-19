@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
+import OfflineNotice from "./OfflineNotice";
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <View style={styles.headcontainer}>
+        <OfflineNotice />
         <Text style={styles.headerText}>{this.props.title}</Text>
       </View>
     );
@@ -18,7 +20,7 @@ export default class Header extends React.Component {
 
 const styles = StyleSheet.create({
   headcontainer: {
-    flex:1,
+    flex: 1,
     backgroundColor: "#ff8c00",
     alignItems: "center",
     justifyContent: "center"

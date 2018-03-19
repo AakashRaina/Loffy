@@ -14,42 +14,21 @@ import DisplayList from "../components/DisplayList"
 import Loader from "../components/Loader";
 import ErrorComponent from "../components/ErrorComponent";
 
-
-export default class PageContentContainer extends React.Component {
+class PageContentContainer extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            connectionType: "",
             responseData: [],
             error: null,
-            modalVisible: false
+            modalVisible: false,
         };
 
         this.modalClose = this.modalClose.bind(this);
     }
 
-    handleFirstConnectivityChange = (connectionInfo) => {
-        this.setState({ connectionType: connectionInfo.type }, function () {
-            console.log(this.state.connectionType)
-        })
-    }
-
-    componentWillMount() {
-        NetInfo.addEventListener(
-            'connectionChange',
-            this.handleFirstConnectivityChange
-        );
-    }
-
-    componentWillUnmount() {
-        NetInfo.removeEventListener(
-            'connectionChange',
-            this.handleFirstConnectivityChange
-        );
-    }
-
     componentDidMount() {
+
         fetch(this.props.url)
             .then(response => response.json())
             .then(data => this.setState({ responseData: data[this.props.responseDataKey] }))
@@ -110,3 +89,5 @@ const styles = StyleSheet.create({
         flex: 1 / 2,
     }
 });
+
+export default PageContentContainer;
