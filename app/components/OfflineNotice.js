@@ -51,12 +51,9 @@ class OfflineNotice extends React.Component {
 const styles = StyleSheet.create({
     offlineContainer: {
         backgroundColor: '#b52424',
-        height: 30,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-        position: 'absolute',
-        top: 30
     },
     offlineText: { color: '#fff' }
 });
