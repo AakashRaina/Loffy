@@ -20,7 +20,8 @@ class BookmarkPageContainer extends React.Component {
         super(props);
 
         this.state = {
-            bookmarkedMovies: []
+            bookmarkedMovies: [],
+            keys: []
         }
     }
 
@@ -30,8 +31,12 @@ class BookmarkPageContainer extends React.Component {
 
     async getKeys() {
         try {
-            AsyncStorage.getAllKeys()
-                .then(keys => this.getMovies(keys));
+            await AsyncStorage.getAllKeys()
+                .then(keys => {
+                    this.setState({
+                        keys: keys
+                    }, function () { this.getMovies(keys) })
+                });
 
         } catch (error) {
             console.log(error);
@@ -60,26 +65,44 @@ class BookmarkPageContainer extends React.Component {
 
 
     render() {
-
-        return (
-            <View style={styles.container}>
-                <StatusBar backgroundColor="white" barStyle="dark-content" />
-                <View style={styles.header}>
-                    <Header title="Bookmarks" />
+        // means 0 bookmarks //
+        if (this.state.keys.length == 0) {
+            return (
+                <View style={styles.container}>
+                    <StatusBar backgroundColor="white" barStyle="dark-content" />
+                    <View style={styles.header}>
+                        <Header title="Bookmarks" />
+                    </View>
+                    <View style={styles.msgContainer}>
+                        <Text style={styles.noBookmarkMsg}>
+                            You haven't Bookmarked anything!!
+                        </Text>
+                    </View>
                 </View>
-                <View style={styles.genreslist}>
-                    {this.state.bookmarkedMovies.length > 0 ?
-                        <DisplayList itemList={this.state.bookmarkedMovies}
-                            titleKey="title"
-                            navigateTo="bookmarkedMovieInfo"
-                        />
-                        :
-                        <Loader />
-                    }
-                </View>
+            )
+        }
+        else {
+            return (
+                <View style={styles.container}>
+                    <StatusBar backgroundColor="white" barStyle="dark-content" />
+                    <View style={styles.header}>
+                        <Header title="Bookmarks" />
+                    </View>
+                    <View style={styles.genreslist}>
+                        {/* means you have bookmarked, but it's loading from storage */}
+                        {this.state.bookmarkedMovies.length > 0 ?
+                            <DisplayList itemList={this.state.bookmarkedMovies}
+                                titleKey="title"
+                                navigateTo="bookmarkedMovieInfo"
+                            />
+                            :
+                            <Loader />
+                        }
+                    </View>
 
-            </View>
-        )
+                </View>
+            )
+        }
     }
 }
 
@@ -96,6 +119,15 @@ const styles = StyleSheet.create({
     },
     errorview: {
         flex: 1 / 2,
+    },
+    msgContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    noBookmarkMsg: {
+        fontSize: 25,
+        fontWeight: 'bold'
     }
 });
 
