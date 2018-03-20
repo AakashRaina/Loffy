@@ -26,7 +26,10 @@ class BookmarkPageContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.getKeys();
+        // keep checking for the updates to storage every 1 sec //
+        setInterval(() => {
+            this.getKeys();
+        }, 1000)
     }
 
     async getKeys() {
@@ -75,7 +78,7 @@ class BookmarkPageContainer extends React.Component {
                     </View>
                     <View style={styles.msgContainer}>
                         <Text style={styles.noBookmarkMsg}>
-                            You haven't Bookmarked anything!!
+                            No Bookmarks Yet!!
                         </Text>
                     </View>
                 </View>
