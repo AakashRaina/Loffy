@@ -100,7 +100,7 @@ const hometab = TabNavigator(
         fontWeight: "bold"
       },
       style: {
-        backgroundColor: "#ff8c00"
+        backgroundColor: "#dc143c"
       },
       indicatorStyle: {
         backgroundColor: "white"

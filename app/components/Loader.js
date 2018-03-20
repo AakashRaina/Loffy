@@ -5,7 +5,7 @@ const Loader = props => {
 
     return (
         <View style={styles.container}>
-            <ActivityIndicator size={50} color="#ff8c00" />
+            <ActivityIndicator size={50} color="#dc143c" />
         </View>
     )
 }

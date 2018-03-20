@@ -21,7 +21,7 @@ class GenresScreen extends React.Component {
           navigateTo="genremovies"
           titleKey="name"
         >
-          <Header title="Loffy" />
+          <Header title="Genres" />
           <DisplayList />
         </PageContentContainer>
       </View>

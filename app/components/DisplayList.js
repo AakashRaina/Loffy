@@ -21,7 +21,7 @@ const DisplayList = props => {
                         <ListItem
                             key={item.id}
                             title={item[props.titleKey]}
-                            chevronColor="#ff8c00"
+                            chevronColor="#dc143c"
                         />
                     </TouchableOpacity>
                 )}
