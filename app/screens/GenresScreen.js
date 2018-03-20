@@ -8,15 +8,18 @@ import {
 } from "react-native";
 import Header from "../components/Header";
 import DisplayList from "../components/DisplayList"
+import { API_KEY } from "../CONSTANTS";
 
 import PageContentContainer from "../components/PageContentContainer"
 class GenresScreen extends React.Component {
 
   render() {
+
+    fullUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + API_KEY
     return (
       <View style={styles.container}>
         <PageContentContainer
-          url="https://api.themoviedb.org/3/genre/movie/list?api_key=8b51b25335ed94c74571c812120a6c73"
+          url={fullUrl}
           responseDataKey="genres"
           navigateTo="genremovies"
           titleKey="name"

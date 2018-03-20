@@ -6,7 +6,8 @@ import {
 import Header from "../components/Header";
 import DisplayList from "../components/DisplayList"
 import { List, ListItem } from "react-native-elements";
-import PageContentContainer from "../components/PageContentContainer"
+import PageContentContainer from "../components/PageContentContainer";
+import { API_KEY } from "../CONSTANTS";
 
 export default class GenreMoviesScreen extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export default class GenreMoviesScreen extends React.Component {
     const fullUrl =
       "https://api.themoviedb.org/3/genre/" +
       this.state.genre.id +
-      "/movies?api_key=8b51b25335ed94c74571c812120a6c73";
+      "/movies?api_key=" + API_KEY;
 
     this.setState({ url: fullUrl });
   }

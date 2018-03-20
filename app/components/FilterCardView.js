@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Icon } from "react-native-elements";
 import { withNavigation } from 'react-navigation';
+import { API_KEY } from "../CONSTANTS";
 
 class FilterCardView extends React.Component {
     constructor(props) {
@@ -65,7 +66,7 @@ class FilterCardView extends React.Component {
     getfilterMovies() {
 
         urlString =
-            "https://api.themoviedb.org/3/discover/movie?api_key=8b51b25335ed94c74571c812120a6c73&language=en-US" +
+            "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&language=en-US" +
             "&" +
             "&primary_release_year=" +
             this.state.selectedYear +

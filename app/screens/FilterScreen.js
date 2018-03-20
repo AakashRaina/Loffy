@@ -11,16 +11,18 @@ import Header from "../components/Header";
 import FilterCardView from "../components/FilterCardView";
 import PageContentContainer from "../components/PageContentContainer"
 import { Icon } from "react-native-elements";
+import { API_KEY } from "../CONSTANTS";
 
 
 
 class FilterScreen extends React.Component {
 
   render() {
+    fullUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + API_KEY;
     return (
       <View style={styles.container}>
         <PageContentContainer
-          url="https://api.themoviedb.org/3/genre/movie/list?api_key=8b51b25335ed94c74571c812120a6c73"
+          url={fullUrl}
           responseDataKey="genres"
           navigateTo="filteredmovies"
         >
