@@ -14,7 +14,8 @@ const DisplayList = props => {
                     <TouchableOpacity
                         activeOpacity={0.8}
                         onPress={() => props.navigation.navigate(props.navigateTo, {
-                            item: item
+                            item: item,
+                            lastScreen: props.currentScreen
                         })}
                     >
                         <ListItem

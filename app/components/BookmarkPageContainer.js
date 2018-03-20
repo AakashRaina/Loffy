@@ -26,10 +26,10 @@ class BookmarkPageContainer extends React.Component {
     }
 
     componentDidMount() {
-        // keep checking for the updates to storage every 1 sec //
+        // keep checking for the updates to storage every .5 sec //
         setInterval(() => {
             this.getKeys();
-        }, 1000)
+        }, 500)
     }
 
     async getKeys() {
@@ -97,6 +97,7 @@ class BookmarkPageContainer extends React.Component {
                             <DisplayList itemList={this.state.bookmarkedMovies}
                                 titleKey="title"
                                 navigateTo="bookmarkedMovieInfo"
+                                currentScreen="bookmarked"
                             />
                             :
                             <Loader />

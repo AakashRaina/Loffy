@@ -21,16 +21,17 @@ import {
   Body
 } from "native-base";
 import { Icon, Rating } from "react-native-elements";
-import Toast, { DURATION } from 'react-native-easy-toast';
 
-export default class MovieInfoScreen extends React.Component {
+
+class MovieInfoScreen extends React.Component {
   constructor(props) {
     super(props);
 
     const { params } = this.props.navigation.state;
 
     this.state = {
-      movie: params.item
+      movie: params.item,
+      lastScreen: params.lastScreen
     };
 
     this.bookmarked = this.bookmarked.bind(this);
@@ -38,6 +39,10 @@ export default class MovieInfoScreen extends React.Component {
 
   bookmarked(movie) {
     this.storeMovie(movie);
+    // if it's bookmark screen, for rest it'll be undefined, go back to it //
+    if (this.state.lastScreen)
+      this.props.navigation.pop()
+
   }
 
   async storeMovie(movie) {
@@ -63,6 +68,7 @@ export default class MovieInfoScreen extends React.Component {
       }
     }
     else {
+      // Already exists, remove it //
       await AsyncStorage.removeItem(movie.id.toString())
         .then(() => {
           ToastAndroid.show('Removed Bookmark', ToastAndroid.SHORT);
@@ -102,3 +108,5 @@ const styles = StyleSheet.create({
     padding: 5
   }
 });
+
+export default MovieInfoScreen;
